@@ -1,13 +1,95 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Aritmética</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input,
+        select {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="calculator">
+        <input type="number" v-model="num1" placeholder="Número 1" />
+        <select v-model="operation">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">×</option>
+            <option value="divide">÷</option>
+        </select>
+        <input type="number" v-model="num2" placeholder="Número 2" />
+        <div class="result">Resultado: {{ result }}</div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    num1: 0,
+                    num2: 0,
+                    operation: "add",
+                };
+            },
+            computed: {
+                result() {
+                    const n1 = parseFloat(this.num1);
+                    const n2 = parseFloat(this.num2);
+
+                    if (isNaN(n1) || isNaN(n2)) {
+                        return "Por favor, insira números válidos!";
+                    }
+
+                    switch (this.operation) {
+                        case "add":
+                            return n1 + n2;
+                        case "subtract":
+                            return n1 - n2;
+                        case "multiply":
+                            return n1 * n2;
+                        case "divide":
+                            if (n2 === 0) {
+                                return "Divisão por zero não é permitida!";
+                            }
+                            return n1 / n2;
+                        default:
+                            return 0;
+                    }
+                },
+            },
+        });
+    </script>
+</body>
+
 </html>
