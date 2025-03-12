@@ -1,4 +1,3 @@
-// 📌 App.vue
 <script setup>
 import Calculator from './components/Calculator.vue';
 </script>

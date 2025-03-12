@@ -23,20 +23,59 @@ const calculateResult = computed(() => {
 
 <template>
     <div class="calculator">
-        <InputField v-model="num1" label="Número 1:" />
-        <OperationSelect v-model="operation" />
-        <InputField v-model="num2" label="Número 2:" />
-        <ResultDisplay :result="calculateResult" />
+        <div class="display">{{ calculateResult }}</div>
+        <div class="inputs">
+            <InputField v-model="num1" label="Número 1:" />
+            <OperationSelect v-model="operation" />
+            <InputField v-model="num2" label="Número 2:" />
+            <ResultDisplay :result="calculateResult" />
+        </div>
     </div>
 </template>
 
 <style scoped>
 .calculator {
-    background: white;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    max-width: 300px;
+    max-width: 320px;
     margin: auto;
 }
+
+.display {
+    background: black;
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+    box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    background: #ff9800;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #e68900;
+}
+
 </style>
